@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect} from 'react'
 import { useState } from 'react'
+import {Link} from "react-router-dom"
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
@@ -36,17 +37,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   
-
-
-const Listado = ({usuario}) =>{
-
-    return (
-        <div>
-           
-        </div>
-    )
-}
-
 
 const ListaUsuarios = () => {
     
@@ -154,25 +144,30 @@ const ListaUsuarios = () => {
                                 // <Listado key={usuario.id} usuario={usuario} />
                                 <div  key={usuario.id}>
                                     <ListItem alignItems="flex-start">
-                                        <ListItemAvatar>
-                                        <Avatar alt="Remy Sharp" src={usuario.avatar} />
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary={usuario.first_name}
-                                            secondary={
-                                                <Fragment>
-                                                    <Typography
-                                                        component="span"
-                                                        variant="body2"
-                                                        className={classes.inline}
-                                                        color="textPrimary"
-                                                    >
-                                                    
-                                                        {usuario.email}
-                                                    </Typography>
-                                                </Fragment>
-                                            }
-                                        />
+                                        
+                                            <ListItemAvatar>
+                                                <Avatar alt="Remy Sharp" src={usuario.avatar} />
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                                primary={usuario.first_name}
+                                                secondary={
+                                                    <Link to={
+                                                        {pathname:`/usuario/${usuario.id}`}
+                                                    }>
+                                                        <Fragment>
+                                                            <Typography
+                                                                component="span"
+                                                                variant="body2"
+                                                                className={classes.inline}
+                                                                color="textPrimary"
+                                                            >
+                                                            
+                                                                {usuario.email}
+                                                            </Typography>
+                                                        </Fragment>
+                                                    </Link>
+                                                }
+                                            />
                                          <ListItemSecondaryAction >
                                             <IconButton onClick={()=> eliminarUsuario(usuario.id)} edge="end" aria-label="delete">
                                             <DeleteIcon  />
